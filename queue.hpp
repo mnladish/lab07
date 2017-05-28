@@ -19,10 +19,10 @@ class Queue
 
   public:
       Queue();
-      void addBack(int n);
-      int getFront();
-      void removeFront();
+      void addBack(int n); //adds item at the end of the queue
+      int getFront(); //returns the value at the front of the queue
+      void removeFront(); //removes item at the front of the queue
       void printQueue();
-      //~Queue();
+      ~Queue();
 };
 #endif

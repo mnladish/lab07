@@ -11,6 +11,7 @@
 #define MENU_HPP
 
 void displayMenu();
-char getChoice();
+int getChoice();
+int getOption();
 
 #endif

@@ -2,22 +2,23 @@
 #include <iostream>
 #include "queue.hpp"
 #include "menu.hpp"
+#include "getPosInt.hpp"
 
 int main()
 {
   Queue numbers;
-  char menuOption;
+  int menuOption;
 
   do
   {
     displayMenu();
     menuOption = getChoice();
 
-    if(menuOption != 'X')
+    if(menuOption != 5)
     {
       switch(menuOption)
       {
-        case 'A':{ //Enter a value to be added to the queue
+        case 1:{ //Enter a value to be added to the queue
                    int num;
                    
                    std::cout << "Enter a positive integer to add to the queue" << std::endl;
@@ -26,26 +27,26 @@ int main()
                  }
                  break;
 
-        case 'B':{ //Display first node (front) value
+        case 2:{ //Display first node (front) value
                    std::cout << "The first node (front) value is: " << std::endl;
                    std::cout << numbers.getFront();
                  }
                  break;
 
-        case 'C':{ //Remove first node (front) value
+        case 3:{ //Remove first node (front) value
                    numbers.removeFront();
                    std::cout << "The first node (front) value is now: " << std::endl;
                    std::cout << numbers.getFront();
                  }
                  break;
 
-        case 'D':{ //Display the queue contents
+        case 4:{ //Display the queue contents
                    numbers.printQueue();
                  }
                  break;
       }
     }
-  }while(menuOption != 'X');
+  }while(menuOption != 5);
  
   return 0;
 }  

@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include "menu.hpp"
+#include <sstream>
 
 /*****************************************
 **          displayMenu()               **
@@ -22,11 +23,11 @@ void displayMenu()
   std::cout << std::endl;
   std::cout << "Welcome to your queue" << std::endl;
   std::cout << std::endl;
-  std::cout << "a. Enter a value to be added to the queue" << std::endl;
-  std::cout << "b. Display first node (front) value" << std::endl;
-  std::cout << "c. Remove first node (front) value" << std::endl;
-  std::cout << "d. Display the queue contents" << std::endl;
-  std::cout << "x. Exit" << std::endl;
+  std::cout << "1. Enter a value to be added to the queue" << std::endl;
+  std::cout << "2. Display first node (front) value" << std::endl;
+  std::cout << "3. Remove first node (front) value" << std::endl;
+  std::cout << "4. Display the queue contents" << std::endl;
+  std::cout << "5. Exit" << std::endl;
   std::cout << std::endl;
 }
 
@@ -35,24 +36,59 @@ void displayMenu()
  * ** This function gets the user's choice **
  * *****************************************/
 
-char getChoice()
+int getChoice()
 {
-  char choice;
+  int choice;
   
   std::cout << "Choose a menu option" << std::endl;
 
-  std::cin.getline(choice,1);
-  
-  choice = toupper(choice);
-
-  while(choice != 'A' && choice != 'B' && choice != 'C'
-        && choice != 'D' && choice != 'X')
-  {
-    std::cout << "Error: Invalid input. Please try again." << std::endl;
-    std::cin >> choice;
-    choice = toupper(choice);
-  }
+  choice = getOption();
 
   return choice;
+}
+
+
+/*****************************************
+**          getOption  ()               **
+** This function verifies that the user **
+** inputs a valid menu option and       **
+** returns that option.                 **
+*****************************************/
+
+int getOption()
+{
+  int num;
+                   
+  bool validInput;
+                           
+  do
+  {
+    validInput = true;
+                                                                        
+    std::string strInt;
+    std::cin >> strInt;
+
+    //verify input consists of digits only
+    for(unsigned int i = 0; i < strInt.length(); ++i)
+    {
+      if(!isdigit(strInt[i]))
+      {
+        validInput = false;
+      }
+    }
+                                                       
+    std::stringstream strStream;
+    strStream << strInt;
+    strStream >> num;
+                                                            
+    //Error output
+    if((validInput == false) || ((num != 1) && (num != 2) && (num != 3) && (num != 4) && (num != 5)))
+    {
+      std::cout << "Error: invalid input.";
+      std::cout << " Enter a valid menu option." << std::endl;
+    }
+  }while((validInput == false) || ((num != 1) && (num != 2) && (num != 3) && (num != 4) && (num != 5)));
+                                                                                                
+  return num;
 }
 

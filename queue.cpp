@@ -65,7 +65,7 @@ void Queue::removeFront()
 
   else
   {
-    front->data = -1;
+    delete front;
     front = front->next;
   }
 }
@@ -79,16 +79,23 @@ void Queue::printQueue()
   {
     do
     {
-      std::cout << temp->data << " ";
+      std::cout << temp->data << ".........";
       temp = temp->next;
     }while(temp != front);
   }
-   std::cout << std::endl;
+
+  else
+  {
+    std::cout << "Queue is empty.";
+  }
+  
+  std::cout << "Queue";
+  std::cout << std::endl;
 }
 
-/*
+
 Queue::~Queue()
 {
   delete front;
   delete back;
-}*/
+}
